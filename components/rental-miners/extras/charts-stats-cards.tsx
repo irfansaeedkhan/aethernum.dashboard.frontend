@@ -46,7 +46,7 @@ const ChartsStatsCards: React.FC = () => {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="bg-blue-light flex flex-col rounded-lg p-4 font-normal text-white shadow-lg tablet:p-6"
+          className="flex flex-col rounded-xl border border-white/10 bg-light p-4 font-normal text-white shadow-3 tablet:p-6"
         >
           <div className="grid h-full grid-rows-[3fr,auto,auto,auto] gap-2">
             <div className="row-start-1">

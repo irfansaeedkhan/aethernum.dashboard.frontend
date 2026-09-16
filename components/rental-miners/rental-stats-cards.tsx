@@ -78,7 +78,7 @@ const RentalStatsCards: React.FC<RentalStatsCardsProps> = ({
       {cards.map((card, index) => (
         <div
           key={index}
-          className="bg-blue-light flex flex-col justify-between rounded-lg p-2 text-white shadow-lg sm:p-4"
+          className="bg-light flex flex-col justify-between rounded-xl border border-white/10 p-3 text-white shadow-3 sm:p-4"
         >
           <div>
             <h4 className="mb-4 text-sm font-light">{card.title}</h4>

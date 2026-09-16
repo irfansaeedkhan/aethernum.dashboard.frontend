@@ -29,7 +29,7 @@ const GradientGaugeChart: React.FC<GradientGaugeChartProps> = ({
   const percentValue = value / maxValue;
 
   return (
-    <div className="bg-blue-light z-10 flex h-full w-full flex-col items-center justify-between rounded-lg p-4 text-white shadow-lg md:flex-row">
+    <div className="z-10 flex h-full w-full flex-col items-center justify-between rounded-xl border border-white/10 bg-light p-4 text-white shadow-3 md:flex-row">
       <div className="mb-4 flex h-full w-full flex-col items-start justify-between md:w-1/2">
         <h4 className="text-sm font-light">{mainTitle}</h4>
         <div className="flex items-center justify-end text-[0.475rem] font-bold tablet:text-[0.625rem]">

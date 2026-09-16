@@ -132,7 +132,7 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
             </Suspense>
           </div>
 
-          <div className="bg-blue-light relative z-10 w-full overflow-hidden rounded-lg tablet:w-3/5">
+          <div className="relative z-10 w-full overflow-hidden rounded-xl border border-white/10 bg-light tablet:w-3/5">
             <Suspense fallback={<ChartFallback />}>
               <Last24hRentedHoursperSecond />
             </Suspense>

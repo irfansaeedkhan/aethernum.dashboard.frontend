@@ -75,7 +75,7 @@ const SolidGaugeChart: React.FC<SolidGaugeChartProps> = ({
   };
 
   return (
-    <div className="bg-blue-light z-10 flex h-full w-full items-end justify-between rounded-lg p-4 text-white shadow-lg">
+    <div className="z-10 flex h-full w-full items-end justify-between rounded-xl border border-white/10 bg-light p-4 text-white shadow-3">
       <div className="flex h-full w-full flex-col items-start justify-between">
         <h4 className="mb-4 text-sm font-light">{mainTitle}</h4>
         <div className="row-start-4 flex items-center justify-end text-[0.375rem] font-bold tablet:text-[0.625rem]">

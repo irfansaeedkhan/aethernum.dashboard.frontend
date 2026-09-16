@@ -49,7 +49,7 @@ const Last24HoursRentedRevenue: React.FC<{ data: MinerData[] }> = ({ data }) => 
           speed: 1000,
         },
       },
-      background: '#0E1F30',
+      background: '#151D1E',
       foreColor: '#FFFFFF',
       toolbar: {
         show: false,
@@ -150,7 +150,7 @@ const Last24HoursRentedRevenue: React.FC<{ data: MinerData[] }> = ({ data }) => 
   };
 
   return (
-    <div className="bg-blue-light z-10 w-full rounded-lg text-white md:p-5">
+    <div className="z-10 w-full rounded-xl border border-white/10 bg-light text-white md:p-4">
       <div className="flex flex-col items-center justify-between p-2 pb-6 pt-4 tablet:flex-row">
         <h3 className="w-full text-sm text-white tablet:w-1/2 tablet:text-sm">
           Hours Rented of the last 24 hours - Rented Hours per Hour rHh & Revenue
@@ -169,9 +169,6 @@ const Last24HoursRentedRevenue: React.FC<{ data: MinerData[] }> = ({ data }) => 
           height={isMobile ? 400 : 330}
           width={isMobile ? 350 : '100%'}
         />
-        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-[1.25rem] bg-primary/30 backdrop-blur-lg">
-          <h3 className="text-center text-xl font-semibold text-white">Coming Soon</h3>
-        </div>
       </div>
     </div>
   );
