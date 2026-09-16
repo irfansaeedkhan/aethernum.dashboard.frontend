@@ -107,7 +107,7 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
           <div className="flex w-full flex-col items-center justify-between gap-6 tablet:w-2/5">
             <Suspense fallback={<ChartFallback />}>
               <GradientGaugeChart
-                value={data?.[0]?.val['V-trxSec'] || 0}
+                value={data?.[0]?.val?.['V-trxSec'] || 0}
                 maxValue={5}
                 minValue={0}
                 colorStart="#00A3FF"
@@ -120,7 +120,7 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
               <GradientGaugeChart
                 colorStart="#FFAA21"
                 colorEnd="#00A3FF"
-                value={data?.[0]?.val['Z-mAh'] || 0}
+                value={data?.[0]?.val?.['Z-mAh'] || 0}
                 maxValue={750}
                 minValue={0}
                 label="mW/h"
@@ -140,30 +140,30 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
         </div>
         <div className="flex w-full flex-row gap-6">
           <RentalStatsCards
-            totalRentedHours={new Intl.NumberFormat().format(data?.[0]?.val['L-trxNumber'] || 0)}
+            totalRentedHours={new Intl.NumberFormat().format(data?.[0]?.val?.['L-trxNumber'] || 0)}
             todayRentedHours={new Intl.NumberFormat().format(
-              data?.[0]?.val['M-dayTransNumber'] || 0
+              data?.[0]?.val?.['M-dayTransNumber'] || 0
             )}
             totalSales={new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0,
-            }).format(data?.[0]?.val['P-totalSale'] || 0)}
+            }).format(data?.[0]?.val?.['P-totalSale'] || 0)}
             todaySales={new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0,
-            }).format(data?.[0]?.val['R-daySale'] || 0)}
+            }).format(data?.[0]?.val?.['R-daySale'] || 0)}
             totalRevenues={new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0,
-            }).format(data?.[0]?.val['Q-revIncome'] || 0)}
+            }).format(data?.[0]?.val?.['Q-revIncome'] || 0)}
             todayRevenues={new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0,
-            }).format(data?.[0]?.val['S-dayRevIncome'] || 0)}
+            }).format(data?.[0]?.val?.['S-dayRevIncome'] || 0)}
             refreshRate={refreshRate}
           />
         </div>
