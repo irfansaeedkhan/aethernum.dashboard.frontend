@@ -54,14 +54,17 @@ const LeaderboardTable: React.FC<Props> = ({
                     key={i}
                     className="h-[72px] w-full overflow-x-auto bg-light px-6 py-4 text-sm text-white last:rounded-b-2xl"
                   >
-                    <TableCell element={'td'} className="font-bold first:rounded-bl-2xl">
+                    <TableCell
+                      element={'td'}
+                      className="font-bold first:rounded-bl-2xl"
+                    >
                       {item.Position === 1 ? (
                         <Image
                           src={'/images/first.png'}
                           alt="Position"
                           width={100}
                           height={100}
-                          className="size-10"
+                          className="mx-auto block size-10 maxmobile:size-8"
                         />
                       ) : item.Position === 2 ? (
                         <Image
@@ -69,7 +72,7 @@ const LeaderboardTable: React.FC<Props> = ({
                           alt="Position"
                           width={100}
                           height={100}
-                          className="size-10"
+                          className="mx-auto block size-10 maxmobile:size-8"
                         />
                       ) : item.Position === 3 ? (
                         <Image
@@ -77,7 +80,7 @@ const LeaderboardTable: React.FC<Props> = ({
                           alt="Position"
                           width={100}
                           height={100}
-                          className="size-10"
+                          className="mx-auto block size-10 maxmobile:size-8"
                         />
                       ) : (
                         <div className={positionClass2}>{item.Position ?? 'N/A'}</div>

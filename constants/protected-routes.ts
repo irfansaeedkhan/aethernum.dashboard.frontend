@@ -4,8 +4,6 @@ import { AppRoutes } from './app-routes';
 export const AUTHENTICATED_ROUTES = [
   AppRoutes.dashboard.index,
   AppRoutes.dashboard.affiliates,
-  AppRoutes.dashboard.chat_bot,
-  AppRoutes.dashboard.education,
   AppRoutes.profile.my_profile,
   AppRoutes.profile.my_invoice,
 ];

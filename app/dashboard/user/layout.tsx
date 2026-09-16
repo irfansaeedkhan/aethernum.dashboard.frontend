@@ -34,8 +34,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, []);
 
   useEffect(() => {
-    router.prefetch(AppRoutes.dashboard.affiliates);
-    router.prefetch(AppRoutes.dashboard.levels_to_unlock);
+    const routes = [
+      AppRoutes.dashboard.index,
+      AppRoutes.dashboard.affiliates,
+      AppRoutes.dashboard.levels_to_unlock,
+      AppRoutes.dashboard.leaderboard,
+      AppRoutes.dashboard.rental_miners,
+      AppRoutes.dashboard.kyc,
+      AppRoutes.profile.my_profile,
+      AppRoutes.profile.my_invoice,
+      AppRoutes.profile.terms,
+    ];
+    routes.forEach(route => router.prefetch(route));
   }, [router]);
 
   return (

@@ -15,8 +15,6 @@ export const AppRoutes = {
     index: '/dashboard/user',
     affiliates: '/dashboard/user/affiliates',
     levels_to_unlock: '/dashboard/user/levels-to-unlock',
-    chat_bot: '/dashboard/user/chat-bot',
-    education: '/dashboard/user/education',
     notifications: '/dashboard/user/notifications',
     leaderboard: '/dashboard/user/leaderboard',
     kyc: '/dashboard/user/kyc',

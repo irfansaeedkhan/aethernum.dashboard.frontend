@@ -66,7 +66,7 @@ export const LeaderboardTableMobile: React.FC<Props> = ({
                       alt="Position"
                       width={32}
                       height={32}
-                      className="size-8 md:size-10"
+                      className="mx-auto block size-8 md:size-10"
                     />
                   ) : item.Position === 2 ? (
                     <Image
@@ -74,7 +74,7 @@ export const LeaderboardTableMobile: React.FC<Props> = ({
                       alt="Position"
                       width={32}
                       height={32}
-                      className="size-8 md:size-10"
+                      className="mx-auto block size-8 md:size-10"
                     />
                   ) : item.Position === 3 ? (
                     <Image
@@ -82,7 +82,7 @@ export const LeaderboardTableMobile: React.FC<Props> = ({
                       alt="Position"
                       width={32}
                       height={32}
-                      className="size-8 md:size-10"
+                      className="mx-auto block size-8 md:size-10"
                     />
                   ) : (
                     <div className={positionClass2}>{item.Position}</div>

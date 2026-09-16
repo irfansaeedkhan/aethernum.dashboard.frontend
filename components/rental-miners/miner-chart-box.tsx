@@ -1,14 +1,27 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { CgSpinner } from 'react-icons/cg';
 
-
-import Last24hRentedHoursperSecond from '@/components/rental-miners/Last-24h-rented-hours-per-second';
-import Last24HoursRentedRevenue from '@/components/rental-miners/Last-24h-rented-revenue';
-import GradientGaugeChart from './extras/gauge';
-import LastWeekHoursRentedChart from './last-week-hours-rented-chart';
 import RentalStatsCards from './rental-stats-cards';
+
+const GradientGaugeChart = dynamic(() => import('./extras/gauge'), { ssr: false });
+const Last24hRentedHoursperSecond = dynamic(
+  () => import('@/components/rental-miners/Last-24h-rented-hours-per-second'),
+  { ssr: false }
+);
+const Last24HoursRentedRevenue = dynamic(
+  () => import('@/components/rental-miners/Last-24h-rented-revenue'),
+  { ssr: false }
+);
+const LastWeekHoursRentedChart = dynamic(() => import('./last-week-hours-rented-chart'), {
+  ssr: false,
+});
+
+const ChartFallback = () => (
+  <div className="h-48 w-full animate-pulse rounded-xl bg-light" />
+);
 
 export interface MinerData {
   ts: number;
@@ -92,34 +105,37 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
         </div>
         <div className="flex w-full flex-col gap-6 overflow-hidden tablet:h-[455px] tablet:flex-row">
           <div className="flex w-full flex-col items-center justify-between gap-6 tablet:w-2/5">
-            <GradientGaugeChart
-              value={data?.[0]?.val['V-trxSec'] || 0}
-              maxValue={5}
-              minValue={0}
-              colorStart="#00A3FF"
-              colorEnd="#FFAA21"
-              mainTitle="Average Rented Hours per Second"
-              timeIndicator="60s"
-              label="Hour Rented / Sec"
-              color="#00A3FF"
-            />
-            <GradientGaugeChart
-              colorStart="#FFAA21"
-              colorEnd="#00A3FF"
-              value={data?.[0]?.val['Z-mAh'] || 0}
-              maxValue={750}
-              minValue={0}
-              label="mW/h"
-              color="#FFAA21"
-              mainTitle="Green FootPrint - mW/h"
-              timeIndicator="60s"
-              greenFootPrint={true}
-            />
+            <Suspense fallback={<ChartFallback />}>
+              <GradientGaugeChart
+                value={data?.[0]?.val['V-trxSec'] || 0}
+                maxValue={5}
+                minValue={0}
+                colorStart="#00A3FF"
+                colorEnd="#FFAA21"
+                mainTitle="Average Rented Hours per Second"
+                timeIndicator="60s"
+                label="Hour Rented / Sec"
+                color="#00A3FF"
+              />
+              <GradientGaugeChart
+                colorStart="#FFAA21"
+                colorEnd="#00A3FF"
+                value={data?.[0]?.val['Z-mAh'] || 0}
+                maxValue={750}
+                minValue={0}
+                label="mW/h"
+                color="#FFAA21"
+                mainTitle="Green FootPrint - mW/h"
+                timeIndicator="60s"
+                greenFootPrint={true}
+              />
+            </Suspense>
           </div>
 
           <div className="bg-blue-light relative z-10 w-full overflow-hidden rounded-lg tablet:w-3/5">
-            {/* <Last24hRentedHoursperSecond data={data} /> */}
-            <Last24hRentedHoursperSecond />
+            <Suspense fallback={<ChartFallback />}>
+              <Last24hRentedHoursperSecond />
+            </Suspense>
           </div>
         </div>
         <div className="flex w-full flex-row gap-6">
@@ -153,10 +169,14 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
         </div>
         <div className="flex w-full flex-col gap-6 tablet:flex-row">
           <div className="relative z-10 w-full rounded-lg bg-light">
-            <Last24HoursRentedRevenue data={data} />
+            <Suspense fallback={<ChartFallback />}>
+              <Last24HoursRentedRevenue data={data} />
+            </Suspense>
           </div>
           <div className="relative z-10 w-full rounded-lg bg-light">
-            <LastWeekHoursRentedChart data={data} />
+            <Suspense fallback={<ChartFallback />}>
+              <LastWeekHoursRentedChart data={data} />
+            </Suspense>
           </div>
         </div>
       </div>

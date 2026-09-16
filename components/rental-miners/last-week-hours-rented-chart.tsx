@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApexOptions } from 'apexcharts';
 import { ClockIcon } from '@/assets/svgs';
@@ -28,8 +28,18 @@ type prop = {
 
 const LastWeekHoursRentedChart: React.FC<prop> = ({ data }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const currentTime = dayjs().format('h:mm:ss A');
-  const currentDate = dayjs().format('MM/DD/YYYY');
+  const [currentTime, setCurrentTime] = useState('--:--:--');
+  const [currentDate, setCurrentDate] = useState('--/--/----');
+
+  useEffect(() => {
+    const updateClock = () => {
+      setCurrentTime(dayjs().format('h:mm:ss A'));
+      setCurrentDate(dayjs().format('MM/DD/YYYY'));
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const options: ApexOptions = {
     chart: {
