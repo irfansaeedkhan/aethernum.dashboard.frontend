@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'kanit';
+  src: url('/fonts/kanit/Kanit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'causten';
+  src: url('/fonts/causten/Causten-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexa';
+  src: url('/fonts/nexa/Nexa-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexablack';
+  src: url('/fonts/Nexa/Nexa-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexathin';
+  src: url('/fonts/Nexa/Nexa-Light.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+body {
+  font-weight: 400;
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Smooth scrolling for the main content */
+.custom-scrollbar {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #151d1e inset !important;
+  }
+
+  .bg-primary > input {
+    --tw-bg-opacity: 1;
+    background-color: #151d1e;
+    border-radius: 9999999px;
+  }
+}
+
+@layer components {
+  .cool-link,
+  .cool-link {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+    transition: width 0.3s;
+  }
+  .cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+    transition: width 0.3s;
+  }
+
+  .cool-link:hover::after,
+  .cool-link:hover::after {
+    width: 100%;
+  }
+
+  .glassEffect {
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .grid__item {
+    position: relative;
+    padding: 1rem;
+  }
+  .grid__item::before,
+  .grid__item::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(20, 20, 20, 0.12);
+    z-index: 1;
+  }
+  .grid__item::after {
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: -1px;
+  }
+  .grid__item::before {
+    width: 1px;
+    height: 100%;
+    left: -1px;
+    top: 0;
+  }
+  .gradient-border-bottom {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%) 1;
+    width: 100%;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: fit-content;
+}
+.bg-gradient-pattern {
+  background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+}
+.bg-gradient-pattern-new {
+  background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+  opacity: 0.7;
+}
+.bg-gradient-pattern-red {
+  background: linear-gradient(90deg, #ff7337 0%, #ce0000 100%);
+}
+
+.border-gradient-pattern {
+  border-image: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%) 1;
+}
+
+.text-gradient-animation {
+  animation: gradient-keyframes 2s linear infinite;
+  background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  width: fit-content;
+  color: transparent;
+}
+.btn-gradient {
+  background:
+    linear-gradient(#0e1f57, #0e1f57) padding-box,
+    linear-gradient(to left, #00a3ff, #ffaa21) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+}
+.btn-gradient-footer {
+  background:
+    linear-gradient(#05121e, #05121e) padding-box,
+    linear-gradient(to left, #00a3ff, #ffaa21) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+}
+.card-gradient {
+  background:
+    linear-gradient(#05121e, #05121e) padding-box,
+    linear-gradient(to bottom, #00a3ff, #ffaa21) border-box;
+  border-radius: 6.25rem;
+  border: 2px solid transparent;
+}
+@keyframes gradient-keyframes {
+  0% {
+    background-position: 0 100%;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.apexcharts-toolbar {
+  top: -6px !important;
+  right: -4px !important;
+}
+
+.custom-scrollbar {
+  overflow-y: auto;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 10px;
+}
+
+/* Scrollbar handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #05121e;
+  border-radius: 10px;
+  border: 2px solid #fff;
+}
+/* Scrollbar handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #0e1f30;
+}
+/* Scrollbar track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px;
+}
+
+.custom-scrollbar {
+  -webkit-overflow-scrolling: touch;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Scrollbar hidden on mobile view */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+input,
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'],
+textarea {
+  font-size: 16px !important;
+}
+
+.PhoneInputCountrySelect {
+  background-color: #0e1f30;
+}
+
+.apexcharts-tooltip {
+  background: #f3f3f3;
+  color: orange;
+}
+
+/* updated theme */
+
+.btn-gold-gradient {
+  background:
+    linear-gradient(#293132, #293132) padding-box,
+    linear-gradient(to right, #ffaa21, #933c1f) border-box;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  color: white;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ffaa21 0%, #933c1f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: fit-content;
+}
+
+/* .PhoneInputInput {
+  background-color: #0b1314 !important;
+} */
+
+.\[\&\>input\]\:bg-primary > input {
+  background-color: #0b1314 !important;
+}

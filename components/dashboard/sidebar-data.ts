@@ -1,0 +1,96 @@
+import {
+  Affiliate,
+  ChatbotIcon,
+  Dashboard,
+  Education,
+  LeaderBoardIcon,
+  RentalMinersIcon,
+} from '@/assets/svgs';
+import { AppRoutes } from '@/constants/app-routes';
+
+export interface IconProps {
+  className?: string;
+}
+
+export type SidebarDataType = {
+  title: string;
+  link: string;
+  icon: React.FC<IconProps>;
+  comingSoon?: boolean;
+};
+
+export const SidebarData: SidebarDataType[] = [
+  {
+    title: 'Dashboard',
+    link: AppRoutes.dashboard.index,
+    icon: Dashboard,
+  },
+  {
+    title: 'Affiliates',
+    link: AppRoutes.dashboard.affiliates,
+    icon: Affiliate,
+  },
+  {
+    title: 'Levels To Unlock',
+    link: AppRoutes.dashboard.levels_to_unlock,
+    icon: LeaderBoardIcon,
+  },
+  {
+    title: 'Rental Miners',
+    link: AppRoutes.dashboard.rental_miners,
+    icon: RentalMinersIcon,
+  },
+  {
+    title: 'Chat bot',
+    link: AppRoutes.dashboard.chat_bot,
+    icon: ChatbotIcon,
+  },
+  {
+    title: 'Education',
+    link: AppRoutes.dashboard.education,
+    icon: Education,
+  },
+  {
+    title: 'Leaderboard',
+    link: AppRoutes.dashboard.leaderboard,
+    icon: LeaderBoardIcon,
+  },
+];
+
+export const SidebarDataMobile: SidebarDataType[] = [
+  {
+    title: 'Dashboard',
+    link: AppRoutes.dashboard.index,
+    icon: Dashboard,
+  },
+  {
+    title: 'Affiliates',
+    link: AppRoutes.dashboard.affiliates,
+    icon: Affiliate,
+  },
+  {
+    title: 'Levels To Unlock',
+    link: AppRoutes.dashboard.levels_to_unlock,
+    icon: LeaderBoardIcon,
+  },
+  {
+    title: 'Rental Miners',
+    link: AppRoutes.dashboard.rental_miners,
+    icon: RentalMinersIcon,
+  },
+  {
+    title: 'Chat bot',
+    link: AppRoutes.dashboard.chat_bot,
+    icon: ChatbotIcon,
+  },
+  {
+    title: 'Education',
+    link: AppRoutes.dashboard.education,
+    icon: Education,
+  },
+  {
+    title: 'Leaderboard',
+    link: AppRoutes.dashboard.leaderboard,
+    icon: LeaderBoardIcon,
+  },
+];
