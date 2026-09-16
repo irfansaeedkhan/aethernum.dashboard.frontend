@@ -24,8 +24,18 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             onClick={() => router.push(AppRoutes.dashboard.index)}
           />
         </div>
-        <div className="absolute bottom-[-5%] left-[40%] z-0 h-[27vw] w-[40vw] rounded-full bg-brand-gold/80 blur-[150px] sm:bottom-[-50%]"></div>
-        <div className="absolute bottom-[-5%] right-[40%] z-0 h-[27vw] w-[40vw] rounded-full bg-brand-rust/80 blur-[150px] sm:bottom-[-50%]"></div>
+        <div
+          className="pointer-events-none absolute bottom-[-15%] left-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+          style={{
+            background: 'radial-gradient(closest-side, rgba(255,170,33,0.35), rgba(255,170,33,0) 70%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-[-15%] right-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+          style={{
+            background: 'radial-gradient(closest-side, rgba(147,60,31,0.40), rgba(147,60,31,0) 70%)',
+          }}
+        />
         <div className="flex w-full lg:w-[85%]">
           <LayoutComponent />
           <div className="relative z-10 flex w-full flex-col lg:w-1/2">

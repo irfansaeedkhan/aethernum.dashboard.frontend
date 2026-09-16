@@ -80,8 +80,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="--max-w-[1081px] mx-auto w-full p-4">{children}</div>
         </div>
       </div>
-      <div className="absolute bottom-[-5%] left-[40%] z-0 h-[27vw] w-[40vw] rounded-full bg-brand-gold/80 blur-[150px] sm:bottom-[-50%]"></div>
-      <div className="absolute bottom-[-5%] right-[40%] z-0 h-[27vw] w-[40vw] rounded-full bg-brand-rust/80 blur-[150px] sm:bottom-[-50%]"></div>
+      <div
+        className="pointer-events-none absolute bottom-[-15%] left-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+        style={{
+          background: 'radial-gradient(closest-side, rgba(255,170,33,0.35), rgba(255,170,33,0) 70%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-15%] right-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+        style={{
+          background: 'radial-gradient(closest-side, rgba(147,60,31,0.40), rgba(147,60,31,0) 70%)',
+        }}
+      />
       <TutorialModal open={showTutorial} onClose={markTutorialAsComplete} slides={tutorialSlides} />
     </div>
   );

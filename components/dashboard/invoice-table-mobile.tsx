@@ -165,7 +165,7 @@ export const InvoiceTableMobile: React.FC = () => {
         </div>
       )} */}
       {loading && (
-        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center backdrop-blur-[4px] backdrop-filter">
+        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center bg-primary/50">
           <CgSpinner className="size-14 mx-auto mt-20 h-14 w-14 shrink-0 animate-spin" />
         </div>
       )}

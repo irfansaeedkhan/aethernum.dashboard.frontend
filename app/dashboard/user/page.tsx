@@ -5,7 +5,6 @@ import { CgSpinner } from 'react-icons/cg';
 
 import { TransactionTableMobile } from '@/components/dashboard/transaction-table-mobile';
 
-import RevenueGraph from '@/components/dashboard/graph';
 import { getAvailableBalance, GetAvailableBalanceResponse } from '@/lib/auth/get-available-balance';
 import {
   BuySigillumDetailResponse,
@@ -39,6 +38,7 @@ const UserDashboard = () => {
   const { initializeTutorial } = useTutorial();
 
   const DashboardLazyCards = lazy(() => import('../../../components/dashboard/dashboard-cards'));
+  const RevenueGraphLazy = lazy(() => import('@/components/dashboard/graph'));
 
   const handleNextPage = () => {
     if (page < totalPages) {
@@ -200,7 +200,7 @@ const UserDashboard = () => {
     <div className="z-10 flex flex-col gap-5">
       <Suspense
         fallback={
-          <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center backdrop-blur-[4px] backdrop-filter">
+          <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center bg-primary/50">
             <CgSpinner className="size-14 mx-auto mt-20 h-14 w-14 shrink-0 animate-spin text-white" />
           </div>
         }
@@ -220,7 +220,13 @@ const UserDashboard = () => {
         />
       </Suspense>
 
-      <RevenueGraph />
+      <Suspense
+        fallback={
+          <div className="h-64 w-full animate-pulse rounded-xl bg-light" />
+        }
+      >
+        <RevenueGraphLazy />
+      </Suspense>
 
       {/* transaction history */}
       <div className="z-10 flex w-full flex-col rounded-xl bg-light">
@@ -299,7 +305,7 @@ const UserDashboard = () => {
 
       <div>
         {loading && (
-          <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center backdrop-blur-[4px] backdrop-filter">
+          <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center bg-primary/50">
             <CgSpinner className="size-14 mx-auto mt-20 animate-spin text-white" />
           </div>
         )}

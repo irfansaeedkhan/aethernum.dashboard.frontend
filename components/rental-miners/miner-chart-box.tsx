@@ -182,7 +182,7 @@ const MinerChartBox: React.FC<Props> = ({ bucketId, minerName, officeSize }) => 
       </div>
 
       {loading && (
-        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center backdrop-blur-[4px] backdrop-filter">
+        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center bg-primary/50">
           <CgSpinner className="mx-auto mt-20 size-14 animate-spin" />
         </div>
       )}

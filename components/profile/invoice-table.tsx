@@ -212,7 +212,7 @@ export const InvoiceTable = () => {
         </table>
       </div>
       {loading && (
-        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center backdrop-blur-[4px] backdrop-filter">
+        <div className="fixed inset-0 z-[3000] flex h-full w-full items-center justify-center bg-primary/50">
           <CgSpinner className="text-blue-shade-1 size-14 mx-auto mt-20 animate-spin" />
         </div>
       )}

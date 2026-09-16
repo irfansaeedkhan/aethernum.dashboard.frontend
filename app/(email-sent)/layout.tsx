@@ -8,8 +8,18 @@ export default function AuthLayoutWithoutBackground({ children }: { children: Re
   return (
     <>
       <section className="relative flex min-h-screen w-full overflow-hidden">
-        <div className="absolute bottom-[-50%] left-[40%] z-0 h-[30vw] w-[40vw] rounded-full bg-[#00A3FF]/30 blur-[150px]"></div>
-        <div className="absolute bottom-[-50%] right-[40%] z-0 h-[30vw] w-[40vw] rounded-full bg-[#FFAA21]/30 blur-[150px]"></div>
+        <div
+          className="pointer-events-none absolute bottom-[-15%] left-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+          style={{
+            background: 'radial-gradient(closest-side, rgba(0,163,255,0.35), rgba(0,163,255,0) 70%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-[-15%] right-[28%] z-0 h-[55vh] w-[70vw] rounded-full"
+          style={{
+            background: 'radial-gradient(closest-side, rgba(255,170,33,0.35), rgba(255,170,33,0) 70%)',
+          }}
+        />
         <div className="flex w-full flex-col">
           <div className="flex h-20 items-center justify-between px-6 sm:px-12">
             <LogoLink />
