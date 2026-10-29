@@ -1,5 +1,14 @@
 /** Shared demo fixtures for local `/api` route handlers. Page size is 5 for multi-page tables. */
 
+/**
+ * Fixed DEMO-ONLY ETH price in USD. This is not a live price feed: it is the
+ * single demo price shared by the pricing endpoint, the balance conversion,
+ * and the per-transaction "ETH price at the time" base, so the dashboard
+ * never implies two different ETH prices at once. Never present it as a
+ * market price.
+ */
+export const DEMO_ETH_PRICE_USD = 2350;
+
 export const DEMO_PAGE_SIZE = 5;
 
 export const demoUser = {
@@ -38,25 +47,55 @@ export function paginate<T>(items: T[], page = 1, pageSize = DEMO_PAGE_SIZE) {
 const statuses = ['CONFIRMED', 'PENDING', 'REJECTED', 'CONFIRMED', 'CONFIRMED'] as const;
 const txTypes = ['Reward', 'Withdrawal', 'DEPOSIT', 'Reward', 'Withdrawal'] as const;
 
+/**
+ * Deterministic demo transaction hash: 64 hex chars that differ visibly
+ * between rows, including in the truncated first-10/last-4 display used by
+ * the dashboard table. Demo data only, never a real on-chain hash.
+ */
+function demoTxHash(index: number): string {
+  let seed = (0x9e3779b1 + index * 0x85ebca6b) >>> 0;
+  let out = '';
+  while (out.length < 64) {
+    // xorshift32
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    seed >>>= 0;
+    out += seed.toString(16).padStart(8, '0');
+  }
+  return `0x${out.slice(0, 64)}`;
+}
+
+/** Deterministic demo destination wallet per row: valid hex, distinct per row. */
+function demoToAddress(index: number): string {
+  const base = BigInt('0x2000000000000000000000000000000000000000');
+  const step = BigInt('0x123456789abcdef');
+  return `0x${(base + BigInt(index) * step).toString(16).padStart(40, '0')}`;
+}
+
 export const mockTransactions = Array.from({ length: 12 }, (_, i) => {
   const day = 18 - i;
-  const value = i % 3 === 0 ? (2400.123456789).toFixed(8) : String(500 + i * 125);
-  const eth = i % 3 === 0 ? '1.023456789012' : (0.2 + i * 0.05).toFixed(6);
+  // Distinct USDT value per row (2 decimals), never a repeated placeholder.
+  const value = Number((612.5 + i * 173.25 + (i % 3) * 40.1).toFixed(2));
+  const ethPrice = DEMO_ETH_PRICE_USD + i * 3;
+  // ETH amount derived from the USDT value at that row's ETH price, so the
+  // two columns always agree instead of repeating one canned pair.
+  const eth = (value / ethPrice).toFixed(6);
   return {
     id: `tx-${1042 + i}`,
     createdAt: `2025-04-${String(Math.max(1, day)).padStart(2, '0')}T12:00:00Z`,
     updatedAt: `2025-04-${String(Math.max(1, day)).padStart(2, '0')}T12:00:00Z`,
-    hash: `0x8a21${(1000 + i).toString(16)}93ef${(2000 + i).toString(16)}abcd`,
+    hash: demoTxHash(i),
     from: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
-    to: '0xAeth000000000000000000000000000000000001',
+    to: demoToAddress(i),
     contract: 'AETH',
-    value,
+    value: value.toFixed(2),
     value_in_eth: eth,
     token: 'USDT',
     blockNumber: 19842011 + i,
     type: txTypes[i % txTypes.length],
     status: statuses[i % statuses.length],
-    eth_price: 2350 + i * 3,
+    eth_price: ethPrice,
     changed_eth_price: 29.85 + i,
     changed_eth_price_percentage: i % 2 === 0 ? 1.27 : -0.84,
   };
@@ -74,7 +113,8 @@ export const mockCardTransactions = Array.from({ length: 8 }, (_, i) => ({
 }));
 
 export const mockRewards = Array.from({ length: 12 }, (_, i) => ({
-  amount: i % 4 === 0 ? 2400.987654321 : 1800 - i * 50,
+  // Distinct amount per row; the old i % 4 === 0 branch repeated one value.
+  amount: Number((2400.99 - i * 53.17).toFixed(2)),
   date: `2025-${String(Math.max(1, 4 - Math.floor(i / 3))).padStart(2, '0')}-18`,
   type: i % 2 === 0 ? 'Monthly reward' : 'Referral reward',
   from: `Sigillum #${1042 - i}`,

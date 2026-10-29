@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
+  DEMO_ETH_PRICE_USD,
   DEMO_PAGE_SIZE,
   demoUser,
   mockAffiliateReport,
@@ -170,7 +171,9 @@ function responseFor(
   }
 
   if (path === 'assets/balance') {
-    return { balance: 12840.5, balanceInUSD: 12840.5 };
+    // Demo balance converted at the single shared demo ETH price, so the
+    // card never implies 1 ETH = 1 USD while transactions show ~2350.
+    return { balance: 12840.5, balanceInUSD: 12840.5 * DEMO_ETH_PRICE_USD };
   }
 
   if (path.startsWith('assets/deposit/')) {
@@ -255,7 +258,7 @@ function responseFor(
     return { dailyChange: 1.27, dailyChangeInUSD: 29.85 };
   }
   if (path.startsWith('v1/pricing/')) {
-    return 2350;
+    return DEMO_ETH_PRICE_USD;
   }
 
   if (path === 'profile/profile') {
