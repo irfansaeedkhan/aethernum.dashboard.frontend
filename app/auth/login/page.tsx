@@ -18,6 +18,21 @@ const Login = () => {
       <div className="mx-auto w-full max-w-[566px] px-6">
         <LoginForm />
       </div>
+      {/* Round 1 demo box: the dashboard ships with an in-repo demo
+          login (demo@aethernum.local, see lib/mock-data.ts), but the
+          login page never said so, and registration stays gated behind
+          a referral code. This box is the public demo path; it does not
+          change the referral requirement for real registrations. */}
+      <div className="mx-auto w-full max-w-[566px] px-6">
+        <div className="rounded-2xl border border-white/15 bg-white/5 p-4 text-sm text-white">
+          <p className="font-semibold text-brand-gold">Try the demo</p>
+          <p className="mt-1 text-white/80">
+            Demo account: <span className="font-semibold text-white">demo@aethernum.local</span>
+            <br />
+            Sign in with the demo email and any password in this demo.
+          </p>
+        </div>
+      </div>
       <div className="flex justify-center gap-0.5 text-sm text-white md:text-base">
         <span className="text-white/80">New to Aethernum? </span>{' '}
         <Link

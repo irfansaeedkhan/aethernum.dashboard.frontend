@@ -32,6 +32,20 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuthStore(useShallow(state => state.actions));
 
+  // Round 1: the submit button is disabled while fields are empty, but
+  // nothing said so. Show exactly what is still missing instead of a
+  // dead button with no explanation.
+  const emailValue = watch('email') ?? '';
+  const passwordValue = watch('password') ?? '';
+  const missingFields = [
+    ...(emailValue === '' ? ['email'] : []),
+    ...(passwordValue === '' ? ['password'] : []),
+  ];
+  const loginHint =
+    missingFields.length > 0
+      ? `Enter your ${missingFields.join(' and ')} to log in.`
+      : null;
+
   const onSubmit: SubmitHandler<IFormInput> = async data => {
     setErrorMessage('');
     setIsLoading('loading');
@@ -135,6 +149,11 @@ export const LoginForm = () => {
             </Link>
           </div>
           <span className="text-xs text-brand-red">{errorMessage}</span>
+          {loginHint && (
+            <p className="text-xs text-white/70" role="status">
+              {loginHint}
+            </p>
+          )}
           <Button
             type="submit"
             title="Login"
