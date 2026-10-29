@@ -64,7 +64,7 @@ export const TransactionTable: React.FC<Props> = ({ transactionDetailList, page,
       accessor: 'eth_price',
       renderCell: row => (
         <div className="flex flex-col gap-1 lg:flex-row">
-          <span className="flex items-center gap-3">{row.eth_price ?? 'N/A'} ETH</span>
+          <span className="flex items-center gap-3">US$ {row.eth_price ?? 'N/A'}</span>
           <div className="flex items-center gap-1 text-xxs font-medium">
             {row.changed_eth_price_percentage >= 0 ? (
               <span className="flex items-center gap-1 text-sm text-xxs font-medium text-brand-mint">
@@ -78,7 +78,7 @@ export const TransactionTable: React.FC<Props> = ({ transactionDetailList, page,
               </span>
             )}
             <span className="text-sm text-xxs font-medium text-white/50">
-              (~ US$ {row.changed_eth_price})
+              (change US$ {row.changed_eth_price})
             </span>
           </div>
         </div>

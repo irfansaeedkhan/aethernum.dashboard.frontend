@@ -197,6 +197,15 @@ function responseFor(
   }
 
   if (path === 'v2/user-meta-asset') {
+    // Demo Sigillum figures derived from the same mockRewards ledger the
+    // dashboard's Rewards List shows, so the panel and the list agree:
+    // earned-until-now is the sum of all 12 reward rows (25302.66), and
+    // rewards-received is the list's row count (12), not a second canned
+    // number. The old literals (12840.5 / 8) coincidentally reused the ETH
+    // balance figure and matched no list on the page.
+    const demoRewardsTotal = Number(
+      mockRewards.reduce((sum, reward) => sum + reward.amount, 0).toFixed(2),
+    );
     return {
       id: 'sigillum-1042',
       createdAt: '2024-01-15',
@@ -207,13 +216,13 @@ function responseFor(
       contract_expiry_date: '2028-01-15',
       last_reward_date: '2025-04-18',
       owned_offices: 12,
-      usdt_earned_untill_now: 12840.5,
+      usdt_earned_untill_now: demoRewardsTotal,
       usdt_earned_last_month: 2400,
       minted_offices_in_usd: 15000,
       minted_offices: 100,
       owned_offices_in_usd: 18000,
       equity_percentage: 4.85,
-      received_rewards: 8,
+      received_rewards: mockRewards.length,
     };
   }
 

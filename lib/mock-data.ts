@@ -96,6 +96,8 @@ export const mockTransactions = Array.from({ length: 12 }, (_, i) => {
     type: txTypes[i % txTypes.length],
     status: statuses[i % statuses.length],
     eth_price: ethPrice,
+    // Absolute USD change in the ETH price, not a USD price itself: the
+    // tables render it as "(change US$ …)" next to the percentage.
     changed_eth_price: 29.85 + i,
     changed_eth_price_percentage: i % 2 === 0 ? 1.27 : -0.84,
   };

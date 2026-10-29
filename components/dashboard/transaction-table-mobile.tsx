@@ -141,7 +141,7 @@ export const TransactionTableMobile: React.FC<Props> = ({
                       )}
 
                       <span className="text-sm text-xxs font-medium text-white/50">
-                        (~ US$ {changed_eth_price ?? 'N/A'})
+                        (change US$ {changed_eth_price ?? 'N/A'})
                       </span>
                     </div>
                   </div>
