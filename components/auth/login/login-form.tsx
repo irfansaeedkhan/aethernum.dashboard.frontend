@@ -32,6 +32,12 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuthStore(useShallow(state => state.actions));
 
+  // Round 2: the email pattern capped the domain suffix at 4 letters,
+  // so demo@aethernum.local ("local" is 5 letters) always failed
+  // validation with "Invalid email address" and LOGIN stayed disabled,
+  // even though the demo box promises that account works. The suffix
+  // cap is removed (2+ letters), so the demo address and other long
+  // suffixes pass, while malformed addresses still fail.
   // Round 1: the submit button is disabled while fields are empty, but
   // nothing said so. Show exactly what is still missing instead of a
   // dead button with no explanation.
@@ -102,7 +108,7 @@ export const LoginForm = () => {
               autoComplete="off"
               {...register('email', {
                 required: true,
-                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               })}
               className={clsx(inputField, errors.email && '!border-brand-red')}
               placeholder="Email"
