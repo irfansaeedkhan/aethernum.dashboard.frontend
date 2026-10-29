@@ -113,14 +113,14 @@ const SigillumDetailComponent: React.FC<Props> = ({ onOpenBuySigillumModal, Sigi
               <p className="text-xxs text-white">US$ Earned Until Now</p>
               <p className="flex items-center gap-1 text-sm text-brand-gold ">
                 <DollarCoin className="size-6 h-6 w-6 shrink-0" />
-                <span>{usdt_earned_untill_now} US$</span>
+                <span>{formatNumber(usdt_earned_untill_now)} US$</span>
               </p>
             </div>
             <div className="flex flex-col gap-1">
               <p className="text-xxs text-white">US$ Earned Last Month</p>
               <p className="flex items-center gap-1 text-sm text-brand-gold ">
                 <DollarCoin className="size-6 h-6 w-6 shrink-0" />
-                <span>{usdt_earned_last_month} US$</span>
+                <span>{formatNumber(usdt_earned_last_month)} US$</span>
               </p>
             </div>
           </div>

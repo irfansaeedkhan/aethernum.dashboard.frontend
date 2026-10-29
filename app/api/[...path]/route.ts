@@ -84,7 +84,7 @@ function responseFor(
   if (path === 'Dashboard') {
     const sliced = paginate(mockDashboardTransactions, page, 10);
     return {
-      Available_Balance: 12840.5,
+      Available_Balance: 12.84,
       Company_Lands_Value: 250000,
       Contract_Start_Date: '2024-01-15T00:00:00.000Z',
       Contract_Expiry_Date: '2028-01-15T00:00:00.000Z',
@@ -173,7 +173,7 @@ function responseFor(
   if (path === 'assets/balance') {
     // Demo balance converted at the single shared demo ETH price, so the
     // card never implies 1 ETH = 1 USD while transactions show ~2350.
-    return { balance: 12840.5, balanceInUSD: 12840.5 * DEMO_ETH_PRICE_USD };
+    return { balance: 12.84, balanceInUSD: 12.84 * DEMO_ETH_PRICE_USD };
   }
 
   if (path.startsWith('assets/deposit/')) {
