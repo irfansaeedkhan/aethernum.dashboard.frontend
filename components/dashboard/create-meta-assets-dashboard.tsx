@@ -39,6 +39,9 @@ export const CreateSigillumDashboard: React.FC<Props> = ({
     dailyChangeInUSD: number;
   }>({ dailyChange: 0, dailyChangeInUSD: 0 });
   const { duration, price, id, price_in_eth } = buySigillumDetail;
+  // Guard: a non-finite price_in_eth (NaN/undefined from the API) must never
+  // render as "NaN ETH". At Total 0 this shows 0.0000 ETH.
+  const safePriceInEth = Number.isFinite(price_in_eth) ? price_in_eth : 0;
 
   // todays day
   const today = new Date();
@@ -136,7 +139,7 @@ export const CreateSigillumDashboard: React.FC<Props> = ({
             <h3 className="text-sm font-medium text-brand-gold">ETH equivalent</h3>
             <div className="flex flex-col items-end gap-2">
               <h3 className="text-bold text-base text-brand-gold">
-                {(value * price_in_eth).toFixed(4)} ETH
+                {(value * safePriceInEth).toFixed(4)} ETH
               </h3>
               <div className="flex flex-col items-end gap-5 lg:flex-row lg:items-start">
                 <h5 className="-mt-1 text-sm font-medium text-white">Current ETH price</h5>
